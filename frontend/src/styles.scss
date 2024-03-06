@@ -1,0 +1,16 @@
+
+html, body { 
+    height: 100%;
+}
+
+html {
+    background-color: #20201e;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url('./assets/3dg_background.png');
+    background-attachment: fixed;
+    background-size: cover;
+}
