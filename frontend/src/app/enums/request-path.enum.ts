@@ -2,5 +2,6 @@ const auth = 'auth/';
 
 export enum RequestPath {
 	// ### AUTH ###
-	VERIFY = auth + 'verify'
+	VERIFY = auth + 'verify',
+	LOGIN = auth + 'login'
 }

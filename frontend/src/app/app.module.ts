@@ -12,6 +12,7 @@ import { ToolbarProfileComponent } from './components/toolbar-profile/toolbar-pr
 import { LoginComponent } from './components/login/login.component';
 import { SpinnerIconComponent } from './components/spinner-icon/spinner-icon.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     ToolbarComponent,
     ToolbarProfileComponent,
     LoginComponent,
-    SpinnerIconComponent
+    SpinnerIconComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

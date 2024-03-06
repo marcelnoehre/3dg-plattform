@@ -26,8 +26,8 @@ export class ApiService {
   public login(username: string, password: string): Observable<User> {
 		const body = {
 			username: username,
-      password: password
+      		password: password
 		};
-		return this.request.send<User>(RequestType.POST, this._basePath + RequestPath.VERIFY, body);
+		return this.request.send<User>(RequestType.POST, this._basePath + RequestPath.LOGIN, body);
 	}
 }
