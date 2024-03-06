@@ -17,6 +17,27 @@ async function verify(req, res, next) {
     }
 }
 
+async function login(req, res, next) {
+    try {
+        const username = req.body.username;
+        const password = req.body.password;
+        if (database.passwords[username] === password) {
+            const user = database.users[username];
+            if (user) {
+                user.token = jwt.sign(user, database.secret, { expiresIn: database.expire });
+                res.json(user);
+            } else {
+                res.status(500).send({ message: 'Internal Server Error' });
+            }
+        } else {
+            res.status(401).send({ message: 'Invalid Credentials' });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
-    verify
+    verify,
+    login
 }
