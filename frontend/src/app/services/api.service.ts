@@ -22,4 +22,12 @@ export class ApiService {
 		};
 		return this.request.send<User>(RequestType.GET, this._basePath + RequestPath.VERIFY, query);
 	}
+
+  public login(username: string, password: string): Observable<User> {
+		const body = {
+			username: username,
+      		password: password
+		};
+		return this.request.send<User>(RequestType.POST, this._basePath + RequestPath.LOGIN, body);
+	}
 }
