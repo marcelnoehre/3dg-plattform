@@ -1,0 +1,16 @@
+<button mat-button class="dropdown-menu-button" [matMenuTriggerFor]="menu" tabindex="0">
+    <div class="user" style="--color: {{ color }}">
+      <ng-container *ngIf="!isSmallScreen()">{{ username }}</ng-container>
+      <div class="user-icon">
+        <p class="initials">{{ initials }}</p>
+      </div>
+    </div>
+    <mat-icon class="header-profile-menu-mat-icon" [inline]="true">arrow_drop_down</mat-icon>
+  </button>
+  
+  <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before">
+    <button (click)="logout()" mat-menu-item tabindex="0">
+      <mat-icon>logout</mat-icon> 
+      logout
+    </button>
+  </mat-menu>
