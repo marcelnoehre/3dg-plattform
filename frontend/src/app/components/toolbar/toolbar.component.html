@@ -1,0 +1,14 @@
+<div *ngIf="isLoggedIn()" class="toolbar">
+    <mat-toolbar>
+        <mat-toolbar-row>
+        <div class="toolbar-section">
+            <div class="col-auto">
+            <button *ngIf="!hideSidenav()" mat-icon-button (click)="toggleSidenav()" tabindex="0">
+                <mat-icon>menu</mat-icon>
+            </button>
+            </div>
+        </div>
+        <app-toolbar-profile></app-toolbar-profile>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
