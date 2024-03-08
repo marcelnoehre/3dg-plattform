@@ -1,6 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
 import { Permission } from 'src/app/enums/permission.enum';
+import { ApiService } from 'src/app/services/api.service';
+import { ErrorService } from 'src/app/services/error.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-user',
@@ -14,7 +19,12 @@ export class CreateUserComponent {
   public permissions: Permission[] = [Permission.HEAD_ADMIN, Permission.ADMIN];
   public loading = false;
   
-  constructor() {
+  constructor(
+    private _api: ApiService,
+    private _user: UserService,
+    private _error: ErrorService,
+    private _snackbar: SnackbarService
+  ) {
 		this._createForm();
 	}
 
@@ -31,6 +41,14 @@ export class CreateUserComponent {
 		);
 	}
 
+  private get _username(): string {
+    return this.createUserForm.controls['usernameFormControl']?.value;
+  }
+
+  private get _permission(): string {
+    return this.createUserForm.controls['permissionFormControl']?.value;
+  }
+
   public isValid(formControl: string): boolean {
 		return this.createUserForm.controls[formControl]?.valid;
 	}
@@ -39,10 +57,15 @@ export class CreateUserComponent {
     return !this.createUserForm.valid;
   }
 
-  public createUser(): void {
-    this.loading = true;
-    console.log('create user');
-    this.loading = false;
+  public async createUser(): Promise<void> {
+    try {
+      this.loading = true;
+      const response = await lastValueFrom(this._api.createUser(this._user.token, this._username, this._permission));
+      this._snackbar.open(response.message);
+      this.loading = false;
+    } catch (err) {
+			this.loading = false;
+			this._error.handleApiError(err);
+		}
   }
-
 }
