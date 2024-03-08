@@ -1,0 +1,23 @@
+.create-user-container {
+    display: flex;
+    justify-content: center;
+    top: 7.5vh;
+    width: 100%;
+    min-height: 92.5vh;
+}
+
+mat-card {
+    width: 75%;
+    height: 100%;
+}
+
+.create-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+}

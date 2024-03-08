@@ -1,0 +1,53 @@
+<div class="create-user-container p-5">
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <h1 class="header pb-4">
+              Create User
+            </h1>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="create-user-form" [formGroup]="createUserForm">
+                <mat-form-field appearance="outline" class="pb-2" MatInput>
+                    <mat-label>Username</mat-label>
+                    <input
+                        #inputCreateUser 
+                        matInput
+                        type="text"
+                        formControlName="usernameFormControl"
+                        placeholder="Username"
+                        required
+                        maxlength="32"
+                    />
+                    <mat-error *ngIf="!isValid('usernameFormControl')">
+                        The username is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" MatInput>
+                        <mat-label>
+                            Permission
+                        </mat-label>
+                        <mat-select formControlName="permissionFormControl">
+                            <mat-option *ngFor="let permission of permissions" [value]="permission">
+                                {{ permission }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!isValid('permissionFormControl')">
+                            The permission is required
+                        </mat-error>
+                    </mat-form-field>
+                    <button
+                        #submitCreateUser
+                        [disabled]="disableSubmit()"
+                        (click)="createUser()"
+                        color="primary"
+                        tabindex="0"
+                        mat-raised-button
+                    >
+                        <app-spinner-icon class="material-icons" icon="add" [spinning]="loading"></app-spinner-icon>
+                        <ng-container *ngIf="loading">&nbsp;</ng-container>
+                        Create User
+                    </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

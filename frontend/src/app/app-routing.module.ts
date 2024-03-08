@@ -13,11 +13,13 @@ const routes: Routes = [
 	},
 	{
 		path: 'create-user',
-		component: CreateUserComponent
+		component: CreateUserComponent,
+		canActivate: [authGuard]
 	},
 	{
 		path: 'app/tmp-voice-bot',
-		component: TmpVoiceBotComponent
+		component: TmpVoiceBotComponent,
+		canActivate: [authGuard]
 	},
 	{
 		path: '',
