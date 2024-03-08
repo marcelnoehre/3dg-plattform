@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SpinnerIconComponent } from './components/spinner-icon/spinner-icon.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TmpVoiceBotComponent } from './components/tmp-voice-bot/tmp-voice-bot.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ToolbarProfileComponent,
     LoginComponent,
     SpinnerIconComponent,
-    DashboardComponent
+    DashboardComponent,
+    TmpVoiceBotComponent
   ],
   imports: [
     BrowserModule,

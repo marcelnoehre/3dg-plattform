@@ -30,6 +30,12 @@ export class SidenavComponent implements OnInit, OnDestroy {
 			icon: AppIcon.DASHBOARD,
 			route: AppRoute.DASHBOARD,
 			color: AppColor.DASHBOARD
+		},
+		{
+			item: AppItem.TMP_VOICE_BOT,
+			route: AppRoute.TMP_VOICE_BOT,
+			icon: AppIcon.TMP_VOICE_BOT,
+			color: AppColor.TMP_VOICE_BOT
 		}
 	];
 
