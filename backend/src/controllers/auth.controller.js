@@ -1,8 +1,9 @@
-const database = require('../../database.json');
 const jwt = require('jsonwebtoken');
+const databaseService = require('../services/database.service');
 
 async function verify(req, res, next) {
     try {
+        const database = require('../../database.json');
         const token = req.query.token;
         const tokenUser = jwt.decode(token);
         const user = database.users[tokenUser.username];
@@ -19,6 +20,7 @@ async function verify(req, res, next) {
 
 async function login(req, res, next) {
     try {
+        const database = require('../../database.json');
         const username = req.body.username;
         const password = req.body.password;
         if (database.passwords[username] === password) {
@@ -37,7 +39,31 @@ async function login(req, res, next) {
     }
 }
 
+async function createUser(req, res, next) {
+    try {
+        const database = require('../../database.json');
+        const username = req.body.username;
+        const permission = req.bdoy.permission;
+        if(!database.users[username]) {
+            database.users[username] = {
+                username: username,
+                permission: permission
+            }
+            database.passwords[username] = {
+                password: database.defaultPassword
+            }
+            await databaseService.updateDatabase(database);
+            res.json({ message: 'User created successfully!' });
+        } {
+            res.status(402).send({ message: 'ERROR.INVALID_TOKEN' });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     verify,
-    login
+    login,
+    createUser
 }
