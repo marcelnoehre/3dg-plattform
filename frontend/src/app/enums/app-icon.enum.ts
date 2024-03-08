@@ -1,3 +1,4 @@
 export enum AppIcon {
-	DASHBOARD = 'home'
+	DASHBOARD = 'home',
+	TMP_VOICE_BOT = 'record_voice_over'
 }

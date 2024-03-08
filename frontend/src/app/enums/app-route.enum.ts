@@ -1,3 +1,4 @@
 export enum AppRoute {
-	DASHBOARD = '/'
+	DASHBOARD = '/',
+	TMP_VOICE_BOT = '/tmp-voice-bot'
 }

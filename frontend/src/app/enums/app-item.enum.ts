@@ -1,3 +1,4 @@
 export enum AppItem {
-	DASHBOARD = 'DASHBOARD'
+	DASHBOARD = 'DASHBOARD',
+	TMP_VOICE_BOT = 'Temporary Voice Bot'
 }
