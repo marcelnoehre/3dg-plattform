@@ -14,6 +14,7 @@ import { SpinnerIconComponent } from './components/spinner-icon/spinner-icon.com
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TmpVoiceBotComponent } from './components/tmp-voice-bot/tmp-voice-bot.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TmpVoiceBotComponent } from './components/tmp-voice-bot/tmp-voice-bot.c
     LoginComponent,
     SpinnerIconComponent,
     DashboardComponent,
-    TmpVoiceBotComponent
+    TmpVoiceBotComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

@@ -38,6 +38,14 @@ export class SidenavComponent implements OnInit, OnDestroy {
 			color: AppColor.TMP_VOICE_BOT
 		}
 	];
+	public settingsItems: App[] = [
+		{
+			item: AppItem.CREATE_USER,
+			route: AppRoute.CREATE_USER,
+			icon: AppIcon.CREATE_USER,
+			color: AppColor.CREATE_USER
+		}
+	]
 
 	constructor(
 		private _storage: StorageService,

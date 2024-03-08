@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { TmpVoiceBotComponent } from './components/tmp-voice-bot/tmp-voice-bot.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 const routes: Routes = [
 	{
@@ -11,7 +12,11 @@ const routes: Routes = [
 		component: LoginComponent
 	},
 	{
-		path: 'tmp-voice-bot',
+		path: 'create-user',
+		component: CreateUserComponent
+	},
+	{
+		path: 'app/tmp-voice-bot',
 		component: TmpVoiceBotComponent
 	},
 	{

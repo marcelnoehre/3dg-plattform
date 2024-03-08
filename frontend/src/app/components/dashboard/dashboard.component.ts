@@ -18,12 +18,22 @@ export class DashboardComponent {
 	) { }
 
 	public appItems: App[][] = [
-		[{
-			item: AppItem.TMP_VOICE_BOT,
-			route: AppRoute.TMP_VOICE_BOT,
-			icon: AppIcon.TMP_VOICE_BOT,
-			color: AppColor.TMP_VOICE_BOT
-		}]
+		[
+			{
+				item: AppItem.TMP_VOICE_BOT,
+				route: AppRoute.TMP_VOICE_BOT,
+				icon: AppIcon.TMP_VOICE_BOT,
+				color: AppColor.TMP_VOICE_BOT
+			}
+		],
+		[
+			{
+				item: AppItem.CREATE_USER,
+				route: AppRoute.CREATE_USER,
+				icon: AppIcon.CREATE_USER,
+				color: AppColor.CREATE_USER
+			}
+		]
 	];
 
 	public redirectTo(route: string): void {

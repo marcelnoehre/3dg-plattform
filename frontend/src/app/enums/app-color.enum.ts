@@ -1,4 +1,5 @@
 export enum AppColor {
     DASHBOARD = 'black',
-    TMP_VOICE_BOT = 'mediumslateblue'
+    CREATE_USER = 'coral',
+    TMP_VOICE_BOT = 'mediumslateblue',
 }
