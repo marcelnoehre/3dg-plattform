@@ -27,10 +27,6 @@ export class UserService {
 		return this._user.username;
 	}
 
-	public get color(): string {
-		return this._user.color;
-	}
-
 	public get permission(): Permission {
 		return this._user.permission;
 	}
@@ -49,10 +45,6 @@ export class UserService {
 
 	public set username(username: string) {
 		this._user.username = username;
-	}
-
-	public set color(color: string) {
-		this._user.color = color;
 	}
 
 	public set permission(permission: Permission) {

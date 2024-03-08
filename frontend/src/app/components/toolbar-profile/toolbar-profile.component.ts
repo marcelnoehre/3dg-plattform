@@ -16,7 +16,6 @@ export class ToolbarProfileComponent {
 	public username = '';
 	public profilePicture = '';
 	public initials = '';
-	public color = '';
 
 	constructor(
 		private _router: Router,
@@ -26,7 +25,6 @@ export class ToolbarProfileComponent {
 	) {
 		this.username = this._user.username;
 		this.initials = this._user.username.charAt(0);
-		this.color = this._user.color;
 	}
 
 	public logout(): void {

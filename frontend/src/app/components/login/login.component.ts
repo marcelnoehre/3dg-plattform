@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
 		private _storage: StorageService,
 		private _router: Router,
 		private _error: ErrorService,
-    private _api: ApiService,
-    private _user: UserService,
-    private _parser: ParserService
+		private _api: ApiService,
+		private _user: UserService,
+		private _parser: ParserService
 	) {
 		this._createForm();
 	}
@@ -65,10 +65,10 @@ export class LoginComponent implements OnInit {
 		try {
 			const user = await lastValueFrom(this._api.login(this._username, await this._parser.sha256(this._password)));
 			this.loading = false;
-      this._user.user = user;
-      this._user.isLoggedIn = true;
-      this._storage.setSessionEntry('user', this._user.user);
-      this._router.navigateByUrl('/');
+			this._user.user = user;
+			this._user.isLoggedIn = true;
+			this._storage.setSessionEntry('user', this._user.user);
+			this._router.navigateByUrl('/');
 		} catch (loginError) {
 			this.loading = false;
 			this._error.handleApiError(loginError);

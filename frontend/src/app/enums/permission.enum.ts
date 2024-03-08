@@ -1,5 +1,5 @@
 export enum Permission {
-	HEAD_ADMIN = 'HEAD_ADMIN',
-	ADMIN = 'ADMIN',
-    NONE = 'NONE'
+	HEAD_ADMIN = 'Head Admin',
+	ADMIN = 'Admin',
+    NONE = 'None'
 }

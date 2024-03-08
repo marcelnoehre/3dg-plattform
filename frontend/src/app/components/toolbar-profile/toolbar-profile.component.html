@@ -1,5 +1,5 @@
 <button mat-button class="dropdown-menu-button" [matMenuTriggerFor]="menu" tabindex="0">
-    <div class="user" style="--color: {{ color }}">
+    <div class="user">
       <ng-container *ngIf="!isSmallScreen()">{{ username }}</ng-container>
       <div class="user-icon">
         <p>{{ initials }}</p>
