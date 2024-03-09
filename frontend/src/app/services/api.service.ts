@@ -40,4 +40,20 @@ export class ApiService {
 		};
 		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.CREATE_USER, body);
 	}
+
+	public updateUsername(token: string, username: string): Observable<ApiResponse> {
+		const body = {
+			token: token,
+			username: username
+		};
+		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_USERNAME, body);
+	}
+
+	public updatePassword(token: string, password: string): Observable<ApiResponse> {
+		const body = {
+			token: token,
+			password: password
+		};
+		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_PASSWORD, body);
+	}
 }
