@@ -25,7 +25,7 @@
                     <button
                         type="button"
                         [ngClass]="{ 'submit-button': !isDisabled('username') }"
-                        (click)="updateUsername()"
+                        (click)="updateAttribute('username')"
                         [disabled]="isDisabled('username')"
                         tabindex="0"
                         matSuffix
@@ -40,6 +40,7 @@
                         <input
                             id="password-input"
                             name="password"
+                            [type]="hidePassword ? 'password' : 'text'"
                             formControlName="passwordFormControl"
                             placeholder="Password"
                             matInput
@@ -64,7 +65,7 @@
                     <button
                         type="button"
                         [ngClass]="{ 'submit-button': !isDisabled('password') }"
-                        (click)="updatePassword()"
+                        (click)="updateAttribute('password')"
                         [disabled]="isDisabled('password')"
                         tabindex="0"
                         matSuffix

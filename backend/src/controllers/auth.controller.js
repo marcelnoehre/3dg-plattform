@@ -65,7 +65,7 @@ async function createUser(req, res, next) {
 async function udpateUsername(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
-        const token = req.query.token;
+        const token = req.body.token;
         const tokenUser = jwt.decode(token);
         const username = req.body.username;
         if (!database.users[tokenUser.username] || !database.users[tokenUser.username]) {
@@ -95,7 +95,7 @@ async function udpateUsername(req, res, next) {
 async function udpatePassword(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
-        const token = req.query.token;
+        const token = req.body.token;
         const tokenUser = jwt.decode(token);
         const password = req.body.password;
         if (!database.passwords[tokenUser.username]) {
