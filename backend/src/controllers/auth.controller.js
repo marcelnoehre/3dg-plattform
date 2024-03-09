@@ -3,7 +3,7 @@ const databaseService = require('../database/database.service');
 
 async function verify(req, res, next) {
     try {
-        const database = require('../database/database.json');
+        const database = await databaseService.getDataBase();
         const token = req.query.token;
         const tokenUser = jwt.decode(token);
         const user = database.users[tokenUser.username];
@@ -21,7 +21,7 @@ async function verify(req, res, next) {
 
 async function login(req, res, next) {
     try {
-        const database = require('../database/database.json');
+        const database = await databaseService.getDataBase();
         const username = req.body.username;
         const password = req.body.password;
         if (database.passwords[username] === password) {
@@ -43,7 +43,7 @@ async function login(req, res, next) {
 
 async function createUser(req, res, next) {
     try {
-        const database = require('../database/database.json');
+        const database = await databaseService.getDataBase();
         const username = req.body.username;
         const permission = req.body.permission;
         if(!database.users[username]) {

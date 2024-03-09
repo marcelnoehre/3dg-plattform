@@ -61,6 +61,7 @@ export class CreateUserComponent {
     try {
       this.loading = true;
       const response = await lastValueFrom(this._api.createUser(this._user.token, this._username, this._permission));
+      this.createUserForm.reset();
       this._snackbar.open(response.message);
       this.loading = false;
     } catch (err) {
