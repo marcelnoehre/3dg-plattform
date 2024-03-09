@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TmpVoiceBotComponent } from './components/tmp-voice-bot/tmp-voice-bot.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
     SpinnerIconComponent,
     DashboardComponent,
     TmpVoiceBotComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    AccountSettingsComponent
   ],
   imports: [
     BrowserModule,

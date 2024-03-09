@@ -62,8 +62,60 @@ async function createUser(req, res, next) {
     }
 }
 
+async function udpateUsername(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        const token = req.body.token;
+        const tokenUser = jwt.decode(token);
+        const username = req.body.username;
+        if (!database.users[tokenUser.username] || !database.users[tokenUser.username]) {
+            res.status(500).send({ message: 'Internal Server Error!' });
+        } else if (database.users[username]) {
+            res.status(402).send({ message: 'Username is already taken!' });
+        } else {
+            const old = {
+                permission: database.users[tokenUser.username].permission,
+                password: database.passwords[tokenUser.username]
+            }
+            delete database.users[tokenUser.username];
+            delete database.passwords[tokenUser.username];
+            database.users[username] = {
+                username: username,
+                permission: old.permission
+            };
+            database.passwords[username] = old.password;
+            await databaseService.updateDatabase(database);
+            res.json({ message: 'Username updated succesfully! You have been logged out for security reasons!' });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function udpatePassword(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        const token = req.body.token;
+        const tokenUser = jwt.decode(token);
+        const password = req.body.password;
+        if (!database.passwords[tokenUser.username]) {
+            res.status(500).send({ message: 'Internal Server Error!' });
+        } else if (database.passwords[tokenUser.username] === password) {
+            res.status(402).send({ message: 'New password cannot be the same as the old one!' });
+        } else {
+            database.passwords[tokenUser.username] = password;
+            await databaseService.updateDatabase(database);
+            res.json({ message: 'Password updated succesfully! You have been logged out for security reasons!' });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     verify,
     login,
-    createUser
+    createUser,
+    udpateUsername,
+    udpatePassword
 }

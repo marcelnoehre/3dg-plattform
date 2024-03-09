@@ -44,6 +44,12 @@ export class SidenavComponent implements OnInit, OnDestroy {
 			route: AppRoute.CREATE_USER,
 			icon: AppIcon.CREATE_USER,
 			color: AppColor.CREATE_USER
+		},
+		{
+			item: AppItem.ACCOUNT_SETTINGS,
+			route: AppRoute.ACCOUNT_SETTINGS,
+			icon: AppIcon.ACCOUNT_SETTINGS,
+			color: AppColor.ACCOUNT_SETTINGS
 		}
 	]
 
