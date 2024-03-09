@@ -1,13 +1,13 @@
 <div class="create-user-container p-5">
     <mat-card appearance="outlined">
         <mat-card-header>
-            <h1 class="header pb-4">
+            <h1 class="header pb-5">
               Create User
             </h1>
         </mat-card-header>
         <mat-card-content>
             <form class="create-user-form" [formGroup]="createUserForm">
-                <mat-form-field appearance="outline" class="pb-2" MatInput>
+                <mat-form-field appearance="outline" class="pb-3" MatInput>
                     <mat-label>Username</mat-label>
                     <input
                         #inputCreateUser 
@@ -22,7 +22,7 @@
                         The username is required
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline" MatInput>
+                <mat-form-field appearance="outline" class="pb-3" MatInput>
                         <mat-label>
                             Permission
                         </mat-label>
