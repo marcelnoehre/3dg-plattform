@@ -62,8 +62,29 @@ async function createUser(req, res, next) {
     }
 }
 
+async function udpatePassword(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        const token = req.query.token;
+        const tokenUser = jwt.decode(token);
+        const password = req.body.password;
+        if (!database.passwords[tokenUser.username]) {
+            res.status(500).send({ message: 'Internal Server Error!' });
+        } else if (database.passwords[tokenUser.username] === password) {
+            res.status(402).send({ message: 'New password cannot be the same as the old one!' });
+        } else {
+            database.passwords[tokenUser.username] = password;
+            await databaseService.updateDatabase(database);
+            res.json({ message: 'Password updated succesfully! You have been logged out for security reasons!' });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     verify,
     login,
-    createUser
+    createUser,
+    udpatePassword
 }
