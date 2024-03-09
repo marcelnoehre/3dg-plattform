@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
 			const user = await lastValueFrom(this._api.login(this._username, await this._parser.sha256(this._password)));
 			this.loading = false;
 			this._user.user = user;
-			this._user.isLoggedIn = true;
 			this._storage.setSessionEntry('user', this._user.user);
 			this._router.navigateByUrl('/');
 		} catch (loginError) {
