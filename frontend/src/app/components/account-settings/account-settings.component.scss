@@ -1,13 +1,13 @@
-.account-settings-component {
+.account-settings-container {
     display: flex;
     justify-content: center;
+    top: 7.5vh;
     width: 100%;
     min-height: 100%;
-    background: #e8f8ff;
 }
 
 mat-card {
-    width: 100%;
+    width: 90%;
     height: 90%;
 }
 

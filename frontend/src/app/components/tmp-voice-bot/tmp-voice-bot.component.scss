@@ -1,0 +1,56 @@
+.tmp-voice-bot-container {
+    display: flex;
+    justify-content: center;
+    top: 7.5vh;
+    width: 100%;
+    min-height: 100%;
+}
+
+mat-card {
+    width: 90%;
+    height: 90%;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.actions {
+    width: 80%;
+    margin-left: 10%;
+    border: 1px solid black;
+    background-color: lightgray;
+    border-radius: 5px;
+
+    .start {
+        background-color: green;
+        color: white;
+    }
+
+    .restart {
+        background-color: darkorange;
+        color: white;
+    }
+}
+
+.console-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .console {
+        width: 80%;
+        height: 30vh;
+        border-radius: 5px;
+        overflow-y: scroll;
+        background-color: darkslategray;
+        color: white;
+    }
+}
+
+.edit {
+    width: 80%;
+    margin-left: 10%;
+}
