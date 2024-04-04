@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
@@ -10,7 +10,9 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './tmp-voice-bot.component.html',
   styleUrls: ['./tmp-voice-bot.component.scss']
 })
-export class TmpVoiceBotComponent {
+export class TmpVoiceBotComponent implements AfterViewInit {
+  @ViewChild('console', {static: false}) consoleElement!: ElementRef;
+  consoleOutput = [];
 
   constructor(
     private _api: ApiService,
@@ -19,6 +21,12 @@ export class TmpVoiceBotComponent {
     private _error: ErrorService
   ) {
 
+  }
+  
+  ngAfterViewInit() {
+    try {
+      this.consoleElement.nativeElement.scrollTop = this.consoleElement.nativeElement.scrollHeight;
+    } catch(err) { }
   }
   
   async startBot(): Promise<void> {

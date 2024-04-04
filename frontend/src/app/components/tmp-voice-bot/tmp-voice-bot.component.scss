@@ -20,17 +20,22 @@ mat-card {
 .actions {
     width: 80%;
     margin-left: 10%;
-    border: 1px solid black;
-    background-color: lightgray;
+    border: 1px solid darkgrey;
     border-radius: 5px;
+    background-color: rgb(245, 245, 245);
 
     .start {
-        background-color: green;
+        background-color: #7BC47F;
         color: white;
     }
 
     .restart {
-        background-color: darkorange;
+        background-color: #F6BD60;
+        color: white;
+    }
+
+    .stop {
+        background-color: #FF7E6B;
         color: white;
     }
 }
@@ -45,12 +50,19 @@ mat-card {
         height: 30vh;
         border-radius: 5px;
         overflow-y: scroll;
-        background-color: darkslategray;
+        background-color: #201c1c;
         color: white;
+        font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+        font-size: smaller;
+        border: 1px solid darkgrey;
     }
 }
 
 .edit {
     width: 80%;
     margin-left: 10%;
+
+    & > button {
+        color: black;
+    }
 }
