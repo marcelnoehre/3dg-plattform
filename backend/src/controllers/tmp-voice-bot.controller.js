@@ -58,7 +58,21 @@ async function stop(req, res, next) {
     }
 }
 
+async function getConsole(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        if (database.tmpVoiceBot.isRunning) {
+            res.json(consoleOutput);
+        } else {
+            res.status(400).send('Bot is not running!');
+        }
+    } catch(err) {
+        next(err);
+    }
+}
+
 module.exports = {
     start,
-    stop
+    stop,
+    getConsole
 }
