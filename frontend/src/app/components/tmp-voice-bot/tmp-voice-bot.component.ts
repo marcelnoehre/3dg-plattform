@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { lastValueFrom } from 'rxjs';
 import { Permission } from 'src/app/enums/permission.enum';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
+import { TmpVoiceBotSettingsComponent } from './tmp-voice-bot-settings/tmp-voice-bot-settings.component';
 
 @Component({
   selector: 'app-tmp-voice-bot',
@@ -20,7 +22,8 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
     private _api: ApiService,
     private _user: UserService,
     private _snackbar: SnackbarService,
-    private _error: ErrorService
+    private _error: ErrorService,
+    private _dialog: MatDialog,
   ) {
 
   }
@@ -86,8 +89,16 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
 		}
   }
 
-  showSettings(): boolean {
+  canShowSettings(): boolean {
     return this._user.permission === Permission.HEAD_ADMIN;
+  }
+
+  showSettings(): void {
+    this._dialog.open(TmpVoiceBotSettingsComponent).afterClosed().subscribe((change) => {
+      if (change) {
+
+      }
+    });
   }
 
 }

@@ -4,7 +4,7 @@
             <h1 class="header pb-4">
               Team Voice Bot
             </h1>
-            <button mat-icon-button class="settings-icon" *ngIf="showSettings()">
+            <button mat-icon-button class="settings-icon" *ngIf="canShowSettings()" (click)="showSettings()">
                 <mat-icon>settings</mat-icon>
             </button>
         </mat-card-header>

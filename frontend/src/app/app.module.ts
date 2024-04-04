@@ -16,6 +16,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TmpVoiceBotComponent } from './components/tmp-voice-bot/tmp-voice-bot.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { TmpVoiceBotSettingsComponent } from './components/tmp-voice-bot/tmp-voice-bot-settings/tmp-voice-bot-settings.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AccountSettingsComponent } from './components/account-settings/account-
     DashboardComponent,
     TmpVoiceBotComponent,
     CreateUserComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    TmpVoiceBotSettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,41 @@
+.dialog-container {
+    min-width: 60vw;
+	padding: 1rem;
+}
+
+mat-dialog-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.header {
+	text-align: center;
+    font-size: 2rem;
+}
+
+mat-form-field {
+    padding-top: 0.5rem;
+}
+
+.actions {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	
+	& > button {
+		padding-block: 1rem;
+	}
+}
+
+@media (max-width: 576px) {
+	.actions {
+		flex-direction: column;
+		gap: 1rem;
+
+		& > button {
+			width: 100%;
+		}
+	}
+}
