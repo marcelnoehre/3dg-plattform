@@ -65,4 +65,11 @@ export class ApiService {
 		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.START_TMP_VOICE_BOT, body);
 	}
 
+	public stopTmpVoiceBot(token: string): Observable<ApiResponse> {
+		const body = {
+			token: token
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.STOP_TMP_VOICE_BOT, body);
+	}
+
 }

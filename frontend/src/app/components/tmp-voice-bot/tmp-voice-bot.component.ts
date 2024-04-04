@@ -30,4 +30,13 @@ export class TmpVoiceBotComponent {
 		}
   }
 
+  async stopBot(): Promise<void> {
+    try {
+      const response = await lastValueFrom(this._api.stopTmpVoiceBot(this._user.token));
+      this._snackbar.open(response.message);
+    } catch (error) {
+			this._error.handleApiError(error);
+		}
+  }
+
 }
