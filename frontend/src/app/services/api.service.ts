@@ -58,6 +58,13 @@ export class ApiService {
 	}
 
 	// ### TMP VOICE BOT ###
+	public getConsoleOutputTmpVoiceBot(token: string): Observable<string[]> {
+		const body = {
+			token: token
+		};
+		return this.request.send<string[]>(RequestType.GET, this._basePath + RequestPath.GET_CONSOLE_TMP_VOICE_BOT, body);
+	}
+
 	public startTmpVoiceBot(token: string): Observable<ApiResponse> {
 		const body = {
 			token: token
@@ -79,11 +86,11 @@ export class ApiService {
 		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.STOP_TMP_VOICE_BOT, body);
 	}
 
-	public getConsoleOutputTmpVoiceBot(token: string): Observable<string[]> {
+	public updatePathTmpVoiceBot(token: string, path: string) {
 		const body = {
-			token: token
+			token: token,
+			path: path
 		};
-		return this.request.send<string[]>(RequestType.GET, this._basePath + RequestPath.GET_CONSOLE_TMP_VOICE_BOT, body);
+		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_PATH_TMP_VOICE_BOT, body);
 	}
-
 }

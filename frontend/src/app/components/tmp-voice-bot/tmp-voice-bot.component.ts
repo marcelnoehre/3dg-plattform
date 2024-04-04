@@ -94,11 +94,7 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showSettings(): void {
-    this._dialog.open(TmpVoiceBotSettingsComponent).afterClosed().subscribe((change) => {
-      if (change) {
-
-      }
-    });
+    this._dialog.open(TmpVoiceBotSettingsComponent).afterClosed().subscribe(() => { });
   }
 
 }

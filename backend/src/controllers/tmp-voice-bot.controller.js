@@ -25,6 +25,19 @@ async function startBot() {
     });
 }
 
+async function getConsole(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        if (database.tmpVoiceBot.isRunning) {
+            res.json(consoleOutput);
+        } else {
+            res.status(400).send({ message: 'Bot is not running!' });
+        }
+    } catch(err) {
+        next(err);
+    }
+}
+
 async function start(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
@@ -74,22 +87,21 @@ async function stop(req, res, next) {
     }
 }
 
-async function getConsole(req, res, next) {
+async function updatePath(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
-        if (database.tmpVoiceBot.isRunning) {
-            res.json(consoleOutput);
-        } else {
-            res.status(400).send({ message: 'Bot is not running!' });
-        }
+        database.tmpVoiceBot.path = req.body.path;
+        await databaseService.updateDatabase(database);
+        res.json({ message: 'Path Update Success!' });
     } catch(err) {
         next(err);
     }
 }
 
 module.exports = {
+    getConsole,
     start,
     restart,
     stop,
-    getConsole
+    updatePath
 }

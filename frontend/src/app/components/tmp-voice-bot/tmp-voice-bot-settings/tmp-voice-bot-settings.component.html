@@ -3,15 +3,15 @@
     <mat-dialog-content class="mat-typography">
         <mat-form-field appearance="outline">
             <mat-label>File</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput [(ngModel)]="path">
         </mat-form-field>
     </mat-dialog-content>
     <div class="actions">
-        <button (click)="closeDialog(false)" [mat-dialog-close]="false" color="dark" tabindex="0" mat-raised-button data-cy="dialog-button-false">
+        <button (click)="closeDialog()" [mat-dialog-close]="false" color="dark" tabindex="0" mat-raised-button data-cy="dialog-button-false">
             Cancel
             <mat-icon> clear </mat-icon>
         </button>
-        <button (click)="closeDialog(true)" [mat-dialog-close]="true" color="dark" tabindex="0" mat-raised-button data-cy="dialog-button-true">
+        <button (click)="updatePath()" [mat-dialog-close]="true" color="dark" tabindex="0" mat-raised-button data-cy="dialog-button-true">
             OK
             <mat-icon> done </mat-icon>
         </button>
