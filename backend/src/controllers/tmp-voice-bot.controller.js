@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 let botProcess;
 let consoleOutput = [];
 
-function startBot() {
+async function startBot() {
     botProcess = spawn('node', ['/Users/marcelnoehre/Documents/dev/bots/3dg-tmp-voice/index.js']);
 
     botProcess.stdout.on('data', (data) => {
@@ -25,6 +25,22 @@ function startBot() {
     });
 }
 
-module.exports = {
+async function start(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        if (database.tmpVoiceBot.isRunning) {
+            res.status(400).send('Bot is already running!');
+        } else {
+            await startBot();
+            database.tmpVoiceBot.isRunning = true;
+            await databaseService.updateDatabase(database);
+            res.send('Bot started!');
+        }
+    } catch(err) {
+        next(err);
+    }
+}
 
+module.exports = {
+    start
 }
