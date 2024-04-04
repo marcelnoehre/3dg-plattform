@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { Permission } from 'src/app/enums/permission.enum';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -83,6 +84,10 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
     } catch (error) {
 			this._error.handleApiError(error);
 		}
+  }
+
+  showSettings(): boolean {
+    return this._user.permission === Permission.HEAD_ADMIN;
   }
 
 }
