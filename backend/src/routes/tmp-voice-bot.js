@@ -7,5 +7,6 @@ router.get('/get-console', jwtAuth.query, tmpVoiceBotController.getConsole);
 
 router.post('/start-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.start);
 router.post('/stop-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.stop);
+router.post('/restart-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.restart);
 
 module.exports = router;

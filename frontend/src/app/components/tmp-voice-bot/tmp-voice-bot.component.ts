@@ -30,6 +30,15 @@ export class TmpVoiceBotComponent {
 		}
   }
 
+  async restartBot(): Promise<void> {
+    try {
+      const response = await lastValueFrom(this._api.restartTmpVoiceBot(this._user.token));
+      this._snackbar.open(response.message);
+    } catch (error) {
+			this._error.handleApiError(error);
+		}
+  }
+
   async stopBot(): Promise<void> {
     try {
       const response = await lastValueFrom(this._api.stopTmpVoiceBot(this._user.token));

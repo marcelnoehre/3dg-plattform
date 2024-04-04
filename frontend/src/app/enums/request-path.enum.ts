@@ -10,5 +10,6 @@ export enum RequestPath {
 	UPDATE_PASSWORD = auth + 'update-password',
 	// ### TMP VOICE BOT ###
 	START_TMP_VOICE_BOT = tmpVoiceBot + 'start-tmp-voice-bot',
+	RESTART_TMP_VOICE_BOT = tmpVoiceBot + 'restart-tmp-voice-bot',
 	STOP_TMP_VOICE_BOT = tmpVoiceBot + 'stop-tmp-voice-bot'
 }
