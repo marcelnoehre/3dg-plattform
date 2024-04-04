@@ -41,6 +41,24 @@ async function start(req, res, next) {
     }
 }
 
+async function stop(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        if (database.tmpVoiceBot.isRunning) {
+            await botProcess.kill();
+            consoleOutput = [];
+            database.tmpVoiceBot.isRunning = false;
+            await databaseService.updateDatabase(database);
+            res.send('Bot stopped!');
+        } else {
+            res.status(400).send('Bot is not running!');
+        }
+    } catch(err) {
+        next(err);
+    }
+}
+
 module.exports = {
-    start
+    start,
+    stop
 }
