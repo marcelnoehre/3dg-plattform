@@ -11,5 +11,6 @@ export enum RequestPath {
 	// ### TMP VOICE BOT ###
 	START_TMP_VOICE_BOT = tmpVoiceBot + 'start-tmp-voice-bot',
 	RESTART_TMP_VOICE_BOT = tmpVoiceBot + 'restart-tmp-voice-bot',
-	STOP_TMP_VOICE_BOT = tmpVoiceBot + 'stop-tmp-voice-bot'
+	STOP_TMP_VOICE_BOT = tmpVoiceBot + 'stop-tmp-voice-bot',
+	GET_CONSOLE_TMP_VOICE_BOT = tmpVoiceBot + 'get-console-tmp-voice-bot'
 }
