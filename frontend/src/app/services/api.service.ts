@@ -10,13 +10,13 @@ import { ApiResponse } from '../interfaces/api-response.interface';
   providedIn: 'root'
 })
 export class ApiService {
-  private _basePath = 'http://localhost:3000/';
+	private _basePath = 'http://localhost:3000/';
 
-  constructor(
-    private request: RequestService
-  ) { }
+	constructor(
+		private request: RequestService
+	) { }
 
-  // ### AUTH ###
+	// ### AUTH ###
 	public verify(token: string): Observable<User> {
 		const query = {
 			token: token
@@ -56,4 +56,13 @@ export class ApiService {
 		};
 		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_PASSWORD, body);
 	}
+
+	// ### TMP VOICE BOT ###
+	public startTmpVoiceBot(token: string): Observable<ApiResponse> {
+		const body = {
+			token: token
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.START_TMP_VOICE_BOT, body);
+	}
+
 }

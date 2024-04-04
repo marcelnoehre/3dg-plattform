@@ -1,4 +1,5 @@
 const auth = 'auth/';
+const tmpVoiceBot = 'tmpVoiceBot/';
 
 export enum RequestPath {
 	// ### AUTH ###
@@ -6,5 +7,7 @@ export enum RequestPath {
 	LOGIN = auth + 'login',
 	CREATE_USER = auth + 'create-user',
 	UPDATE_USERNAME = auth + 'update-username',
-	UPDATE_PASSWORD = auth + 'update-password'
+	UPDATE_PASSWORD = auth + 'update-password',
+	// ### TMP VOICE BOT ###
+	START_TMP_VOICE_BOT = tmpVoiceBot + 'start'
 }

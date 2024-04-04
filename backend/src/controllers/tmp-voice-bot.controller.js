@@ -5,7 +5,8 @@ let botProcess;
 let consoleOutput = [];
 
 async function startBot() {
-    botProcess = spawn('node', ['/Users/marcelnoehre/Documents/dev/bots/3dg-tmp-voice/index.js']);
+    const database = await databaseService.getDataBase();
+    botProcess = spawn('node', [database.tmpVoiceBot.path]);
 
     botProcess.stdout.on('data', (data) => {
         const output = data.toString();
