@@ -48,6 +48,16 @@ async function getFile(req, res, next) {
     }
 }
 
+async function getTeams(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        const teams = await commonService.readJSONFile(database.tmpVoiceBot.path.replace('index.js', 'assets/teams.json'));
+        res.json(teams);
+    } catch(err) {
+        next(err);
+    }
+}
+
 async function getChannelSettings(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
@@ -145,6 +155,7 @@ async function updateChannelSettings(req, res, next) {
 module.exports = {
     getConsole,
     getFile,
+    getTeams,
     getChannelSettings,
     start,
     restart,

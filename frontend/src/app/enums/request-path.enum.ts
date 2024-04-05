@@ -11,6 +11,7 @@ export enum RequestPath {
 	// ### TMP VOICE BOT ###
 	GET_CONSOLE_TMP_VOICE_BOT = tmpVoiceBot + 'get-console-tmp-voice-bot',
 	GET_FILE_TMP_VOICE_BOT = tmpVoiceBot + 'get-file-tmp-voice-bot',
+	GET_TEAMS_TMP_VOICE_BOT = tmpVoiceBot + 'get-teams-tmp-voice-bot',
 	GET_CHANNEL_SETTINGS_TMP_VOICE_BOT = tmpVoiceBot + 'get-channel-settings-tmp-voice-bot',
 	START_TMP_VOICE_BOT = tmpVoiceBot + 'start-tmp-voice-bot',
 	RESTART_TMP_VOICE_BOT = tmpVoiceBot + 'restart-tmp-voice-bot',

@@ -5,6 +5,7 @@ const jwtAuth = require('../auth/jwtAuth');
 
 router.get('/get-console-tmp-voice-bot', jwtAuth.query, tmpVoiceBotController.getConsole);
 router.get('/get-file-tmp-voice-bot', jwtAuth.query, tmpVoiceBotController.getFile);
+router.get('/get-teams-tmp-voice-bot', jwtAuth.query, tmpVoiceBotController.getTeams);
 router.get('/get-channel-settings-tmp-voice-bot', jwtAuth.query, tmpVoiceBotController.getChannelSettings);
 
 router.post('/start-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.start);
