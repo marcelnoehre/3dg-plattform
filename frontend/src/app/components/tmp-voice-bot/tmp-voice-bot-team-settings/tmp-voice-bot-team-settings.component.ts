@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
@@ -10,10 +11,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./tmp-voice-bot-team-settings.component.scss']
 })
 export class TmpVoiceBotTeamSettingsComponent implements OnInit {
-  initTeams: any[] = [];
   teams: any[] = [];
 
   constructor(
+		private _dialogRef: MatDialogRef<TmpVoiceBotTeamSettingsComponent>,
     private _api: ApiService,
     private _user: UserService,
     private _error: ErrorService
@@ -21,12 +22,16 @@ export class TmpVoiceBotTeamSettingsComponent implements OnInit {
   
   async ngOnInit(): Promise<void> {
     try {
-      const teams = await lastValueFrom(this._api.getTeamsTmpVoiceBot(this._user.token));
-      this.initTeams = teams;
-      this.teams = teams;
+      const data = await lastValueFrom(this._api.getTeamsTmpVoiceBot(this._user.token));
+      this.teams = data.teams;
+      this.teams.pop();
     } catch (error) {
       this._error.handleApiError(error);
     }
   }
+
+  public closeDialog(): void {
+		this._dialogRef.close(false);
+	}
 
 }

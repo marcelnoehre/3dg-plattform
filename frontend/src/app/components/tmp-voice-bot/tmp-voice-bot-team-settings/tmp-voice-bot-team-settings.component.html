@@ -1,1 +1,31 @@
-{{ teams  | json }}
+<div class="dialog-container" mat-dialog-container>
+    <h1 class="header" mat-dialog-title>Teams</h1>
+    <mat-dialog-content class="mat-typography">
+        <table class="teams">
+            <thead class="sticky-header">
+                <tr>
+                    <th> Team </th>
+                    <th> Discord-ID </th>
+                    <th> Delete </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="team" *ngFor="let team of teams">
+                    <td class="name"> {{ team.name }} </td>
+                    <td class="id"> {{ team.id }} </td>
+                    <td>
+                        <button mat-icon-button color="warn">
+                            <mat-icon> delete </mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-dialog-content>
+    <div class="actions">
+        <button (click)="closeDialog()" [mat-dialog-close]="false" color="dark" tabindex="0" mat-raised-button data-cy="dialog-button-false">
+            Cancel
+            <mat-icon> clear </mat-icon>
+        </button>
+    </div>
+</div>
