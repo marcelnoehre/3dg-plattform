@@ -7,6 +7,7 @@ import { ErrorService } from 'src/app/services/error.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
 import { TmpVoiceBotSettingsComponent } from './tmp-voice-bot-settings/tmp-voice-bot-settings.component';
+import { TmpVoiceBotChannelSettingsComponent } from './tmp-voice-bot-channel-settings/tmp-voice-bot-channel-settings.component';
 
 @Component({
   selector: 'app-tmp-voice-bot',
@@ -95,6 +96,10 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showSettings(): void {
     this._dialog.open(TmpVoiceBotSettingsComponent).afterClosed().subscribe(() => { });
+  }
+
+  showChannelSettings(): void {
+    this._dialog.open(TmpVoiceBotChannelSettingsComponent).afterClosed().subscribe(() => { });
   }
 
 }
