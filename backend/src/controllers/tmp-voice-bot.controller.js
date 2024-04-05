@@ -1,3 +1,4 @@
+const commonService = require('../services/common.service');
 const databaseService = require('../database/database.service');
 const { spawn } = require('child_process');
 
@@ -28,6 +29,16 @@ async function startBot() {
 async function getConsole(req, res, next) {
     try {
         res.json(consoleOutput);
+    } catch(err) {
+        next(err);
+    }
+}
+
+async function getChannelSettings(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        const data = await commonService.readJSONFile(database.tmpVoiceBot.path.replace('index.js', 'assets/channel.json'));
+        res.json(data);
     } catch(err) {
         next(err);
     }
@@ -95,8 +106,9 @@ async function updatePath(req, res, next) {
 
 module.exports = {
     getConsole,
+    getChannelSettings,
     start,
     restart,
     stop,
-    updatePath
+    updatePath,
 }

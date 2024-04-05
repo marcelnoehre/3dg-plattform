@@ -4,6 +4,7 @@ const tmpVoiceBotController = require('../controllers/tmp-voice-bot.controller')
 const jwtAuth = require('../auth/jwtAuth');
 
 router.get('/get-console-tmp-voice-bot', jwtAuth.query, tmpVoiceBotController.getConsole);
+router.get('/get-channel-settings-tmp-voice-bot', jwtAuth.query, tmpVoiceBotController.getChannelSettings);
 
 router.post('/start-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.start);
 router.post('/stop-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.stop);

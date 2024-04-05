@@ -5,7 +5,7 @@
             <mat-label>Category</mat-label>
             <div class="input-container">
                 <input type="text" matInput [(ngModel)]="category">
-                <button mat-icon-button>
+                <button mat-icon-button [disabled]="disableCategory()">
                     <mat-icon>done</mat-icon>
                 </button>
             </div>
@@ -14,7 +14,7 @@
             <mat-label>Channel</mat-label>
             <div class="input-container">
                 <input type="text" matInput [(ngModel)]="channel">
-                <button mat-icon-button>
+                <button mat-icon-button [disabled]="disableChannel()">
                     <mat-icon>done</mat-icon>
                 </button>
             </div>

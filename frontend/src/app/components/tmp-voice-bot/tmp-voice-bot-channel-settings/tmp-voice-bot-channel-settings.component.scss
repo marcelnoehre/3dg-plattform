@@ -22,6 +22,10 @@ mat-form-field {
 .input-container {
 	display: flex;
 	align-items: center;
+	& > button:not(:disabled) {
+		background-color: #7BC47F;
+        color: white;
+	}
 }
 
 .mat-form-field-outline-start {
