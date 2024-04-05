@@ -121,6 +121,28 @@ async function stop(req, res, next) {
     }
 }
 
+async function addTeam(req, res, next) {
+    try {
+        const newTeam = req.body.team;
+        const database = await databaseService.getDataBase();
+        const path = database.tmpVoiceBot.path.replace('index.js', 'assets/teams.json');
+        const data = await commonService.readJSONFile(path);
+        if (data.teams.some(team => team.id === newTeam.id)) {
+            res.status(400).send({ message: 'ID Already Exists!' });
+        } else if (data.teams.some(team => team.name === newTeam.name)) {
+            res.status(400).send({ message: 'Name Already Exists!' });
+        } else {
+            data.teams.splice(data.teams.length - 1, 0, newTeam);
+            await commonService.updateJSONFile(path, data);
+            database.tmpVoiceBot.pendingChanges = true;
+            await databaseService.updateDatabase(database);
+            res.json({ message: 'Teams Update Success!' });
+        }
+    } catch(err) {
+        next(err);
+    }
+}
+
 async function updatePath(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
@@ -160,6 +182,7 @@ module.exports = {
     start,
     restart,
     stop,
+    addTeam,
     updatePath,
     updateChannelSettings
 }

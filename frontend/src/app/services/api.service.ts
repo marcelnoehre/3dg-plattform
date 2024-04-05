@@ -107,6 +107,14 @@ export class ApiService {
 		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.STOP_TMP_VOICE_BOT, body);
 	}
 
+	public addTeamTmpVoiceBot(token: string, team: any) {
+		const body = {
+			token: token,
+			team: team
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.ADD_TEAM_TMP_VOICE_BOT, body);
+	}
+
 	public updatePathTmpVoiceBot(token: string, path: string) {
 		const body = {
 			token: token,

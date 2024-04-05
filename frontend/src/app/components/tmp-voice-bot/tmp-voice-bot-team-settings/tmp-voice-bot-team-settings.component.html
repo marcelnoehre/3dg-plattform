@@ -1,6 +1,19 @@
 <div class="dialog-container" mat-dialog-container>
     <h1 class="header" mat-dialog-title>Teams</h1>
     <mat-dialog-content class="mat-typography">
+        <div class="input-container">
+            <mat-form-field appearance="outline">
+                <mat-label>Team</mat-label>
+                <input type="text" matInput [(ngModel)]="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Discord-ID</mat-label>
+                <input type="text" matInput [(ngModel)]="id" fxFlex>
+            </mat-form-field>
+            <button mat-icon-button [disabled]="disable()" (click)="addTeam()">
+                <mat-icon> add </mat-icon>
+            </button>
+        </div>
         <table class="teams">
             <thead class="sticky-header">
                 <tr>
@@ -14,7 +27,7 @@
                     <td class="name"> {{ team.name }} </td>
                     <td class="id"> {{ team.id }} </td>
                     <td>
-                        <button mat-icon-button color="warn">
+                        <button mat-icon-button color="warn" (click)="deleteTeam(team.id)">
                             <mat-icon> delete </mat-icon>
                         </button>
                     </td>

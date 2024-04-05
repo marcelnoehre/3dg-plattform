@@ -15,6 +15,23 @@ mat-dialog-content {
     font-size: 2rem;
 }
 
+.input-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	& > mat-form-field {
+		flex: 1;
+	}
+	& > button {
+		transform: translateY(-8px);
+	}
+	& > button:not(:disabled) {
+		background-color: #7BC47F;
+        color: white;
+	}
+}
+
 .teams {
     width: 100%;
     border-collapse: collapse;
@@ -50,15 +67,6 @@ mat-dialog-content {
 
 mat-form-field {
     padding-top: 0.5rem;
-}
-
-.input-container {
-	display: flex;
-	align-items: center;
-	& > button:not(:disabled) {
-		background-color: #7BC47F;
-        color: white;
-	}
 }
 
 .actions {
