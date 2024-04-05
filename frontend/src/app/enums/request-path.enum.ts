@@ -17,6 +17,7 @@ export enum RequestPath {
 	RESTART_TMP_VOICE_BOT = tmpVoiceBot + 'restart-tmp-voice-bot',
 	STOP_TMP_VOICE_BOT = tmpVoiceBot + 'stop-tmp-voice-bot',
 	ADD_TEAM_TMP_VOICE_BOT = tmpVoiceBot + 'add-team-tmp-voice-bot',
+	DELETE_TEAM_TMP_VOICE_BOT = tmpVoiceBot + 'delete-team-tmp-voice-bot',
 	UPDATE_PATH_TMP_VOICE_BOT = tmpVoiceBot + 'update-path-tmp-voice-bot',
 	UPDATE_CHANNEL_SETTINGS_TMP_VOICE_BOT = tmpVoiceBot + 'update-channel-settings-tmp-voice-bot'
 }

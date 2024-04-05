@@ -143,6 +143,22 @@ async function addTeam(req, res, next) {
     }
 }
 
+async function deleteTeam(req, res, next) {
+    try {
+        const idToRemove = req.body.id;
+        const database = await databaseService.getDataBase();
+        const path = database.tmpVoiceBot.path.replace('index.js', 'assets/teams.json');
+        const data = await commonService.readJSONFile(path);
+        data.teams = data.teams.filter(team => team.id !== idToRemove);
+        await commonService.updateJSONFile(path, data);
+        database.tmpVoiceBot.pendingChanges = true;
+        await databaseService.updateDatabase(database);
+        res.json({ message: 'Teams Update Success!' });
+    } catch(err) {
+        next(err);
+    }
+}
+
 async function updatePath(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
@@ -183,6 +199,7 @@ module.exports = {
     restart,
     stop,
     addTeam,
+    deleteTeam,
     updatePath,
     updateChannelSettings
 }

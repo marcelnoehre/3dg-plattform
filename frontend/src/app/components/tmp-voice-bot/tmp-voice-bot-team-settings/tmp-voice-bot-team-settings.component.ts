@@ -59,7 +59,13 @@ export class TmpVoiceBotTeamSettingsComponent implements OnInit {
   }
 
   async deleteTeam(id: string): Promise<void> {
-    console.log('delete');
+    try {
+      const response = await lastValueFrom(this._api.deleteTeamTmpVoiceBot(this._user.token, id));
+      this.teams = this.teams.filter(team => team.id !== id);
+      this._snackbar.open(response.message);
+    } catch (error) {
+      this._error.handleApiError(error);
+    }
   }
 
 }

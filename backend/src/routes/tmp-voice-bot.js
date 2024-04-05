@@ -12,6 +12,7 @@ router.post('/start-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.start);
 router.post('/stop-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.stop);
 router.post('/restart-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.restart);
 router.post('/add-team-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.addTeam);
+router.post('/delete-team-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.deleteTeam);
 
 router.put('/update-path-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.updatePath);
 router.put('/update-channel-settings-tmp-voice-bot', jwtAuth.body, tmpVoiceBotController.updateChannelSettings);
