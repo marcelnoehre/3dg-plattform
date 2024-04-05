@@ -65,6 +65,13 @@ export class ApiService {
 		return this.request.send<string[]>(RequestType.GET, this._basePath + RequestPath.GET_CONSOLE_TMP_VOICE_BOT, body);
 	}
 
+	public getFileTmpVoiceBot(token: string): Observable<string> {
+		const body = {
+			token: token
+		};
+		return this.request.send<string>(RequestType.GET, this._basePath + RequestPath.GET_FILE_TMP_VOICE_BOT, body);
+	}
+
 	public getChannelSettingsTmpVoiceBot(token: string): Observable<any> {
 		const body = {
 			token: token

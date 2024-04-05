@@ -34,6 +34,15 @@ async function getConsole(req, res, next) {
     }
 }
 
+async function getFile(req, res, next) {
+    try {
+        const database = await databaseService.getDataBase();
+        res.json(database.tmpVoiceBot.path);
+    } catch(err) {
+        next(err);
+    }
+}
+
 async function getChannelSettings(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
@@ -101,6 +110,7 @@ async function updatePath(req, res, next) {
     try {
         const database = await databaseService.getDataBase();
         database.tmpVoiceBot.path = req.body.path;
+        database.tmpVoiceBot.pendingChanges = true;
         await databaseService.updateDatabase(database);
         res.json({ message: 'Path Update Success!' });
     } catch(err) {
@@ -129,6 +139,7 @@ async function updateChannelSettings(req, res, next) {
 
 module.exports = {
     getConsole,
+    getFile,
     getChannelSettings,
     start,
     restart,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './tmp-voice-bot-settings.component.html',
   styleUrls: ['./tmp-voice-bot-settings.component.scss']
 })
-export class TmpVoiceBotSettingsComponent {
+export class TmpVoiceBotSettingsComponent implements OnInit {
+  initPath: string = '';
   path: string = '';
 
   constructor(
@@ -22,6 +23,16 @@ export class TmpVoiceBotSettingsComponent {
     private _snackbar: SnackbarService
 	) { }
 
+  async ngOnInit(): Promise<void> {
+    try {
+      const path = await lastValueFrom(this._api.getFileTmpVoiceBot(this._user.token));
+      this.initPath = path;
+      this.path = path;
+    } catch (error) {
+      this._error.handleApiError(error);
+    }
+  }
+
   public closeDialog(): void {
 		this._dialogRef.close(false);
 	}
@@ -29,11 +40,15 @@ export class TmpVoiceBotSettingsComponent {
   public async updatePath() {
     try {
       const response = await lastValueFrom(this._api.updatePathTmpVoiceBot(this._user.token, this.path));
+      this.initPath = this.path;
       this._snackbar.open(response.message);
-      this._dialogRef.close(true);
     } catch (error) {
       this._error.handleApiError(error);
     }
+  }
+
+  public disablePath(): boolean {
+    return this.path === this.initPath;
   }
 
 }
