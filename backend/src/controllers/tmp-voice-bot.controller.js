@@ -51,6 +51,7 @@ async function start(req, res, next) {
             res.status(400).send({ message: 'Bot is already running!' });
         } else {
             await startBot();
+            database.tmpVoiceBot.pendingChanges = false;
             database.tmpVoiceBot.isRunning = true;
             await databaseService.updateDatabase(database);
             res.send({ message: 'Bot started!' });
@@ -67,6 +68,8 @@ async function restart(req, res, next) {
             await botProcess.kill();
             consoleOutput = [];
             await startBot();
+            database.tmpVoiceBot.pendingChanges = false;
+            await databaseService.updateDatabase(database);
             res.send({ message: 'Bot restarted!' });
         } else {
             res.status(400).send({ message: 'Bot is not running!' });
@@ -83,6 +86,7 @@ async function stop(req, res, next) {
             await botProcess.kill();
             consoleOutput = [];
             database.tmpVoiceBot.isRunning = false;
+            database.tmpVoiceBot.pendingChanges = false;
             await databaseService.updateDatabase(database);
             res.send({ message: 'Bot stopped!' });
         } else {
@@ -104,6 +108,24 @@ async function updatePath(req, res, next) {
     }
 }
 
+async function updateChannelSettings(req, res, next) {
+    try {
+        const attribute = req.body.attribute;
+        const value = req.body.value;
+        const database = await databaseService.getDataBase();
+        const data = await commonService.readJSONFile(database.tmpVoiceBot.path.replace('index.js', 'assets/channel.json'));
+        data[attribute] = value;
+        await commonService.updateJSONFile(data);
+        if (database.tmpVoiceBot.isRunning) {
+            database.tmpVoiceBot.pendingChanges = true;
+        }
+        await databaseService.updateDatabase(database);
+        res.json({ message: 'Channel Settings Update Success!' });
+    } catch(err) {
+        next(err);
+    }
+}
+
 module.exports = {
     getConsole,
     getChannelSettings,
@@ -111,4 +133,5 @@ module.exports = {
     restart,
     stop,
     updatePath,
+    updateChannelSettings
 }
