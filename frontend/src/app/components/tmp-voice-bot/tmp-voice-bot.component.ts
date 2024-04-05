@@ -17,6 +17,8 @@ import { TmpVoiceBotChannelSettingsComponent } from './tmp-voice-bot-channel-set
 export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('console', {static: false}) consoleElement!: ElementRef;
   consoleOutput: string[] = [];
+  pendingChanges: boolean = false;
+  isRunning: boolean = false;
   syncInterval: any;
 
   constructor(
@@ -30,7 +32,10 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.startConsole();
+    await this.syncData();
+    this.syncInterval = setInterval(async () => {
+			await this.syncData();
+		}, 2000);
   }
   
   ngAfterViewInit() {
@@ -40,29 +45,19 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stopConsole();
-  }
-
-  async startConsole(): Promise<void> {
-    await this.syncData();
-    this.syncInterval = setInterval(async () => {
-			await this.syncData();
-		}, 5000);
-  }
-
-  async stopConsole(): Promise<void> {
     clearInterval(this.syncInterval);
-    this.consoleOutput = [];
   }
 
   async syncData(): Promise<void> {
-    this.consoleOutput = await lastValueFrom(this._api.getConsoleOutputTmpVoiceBot(this._user.token));
+    const data = await lastValueFrom(this._api.getConsoleOutputTmpVoiceBot(this._user.token));
+    this.consoleOutput = data.consoleOutput;
+    this.pendingChanges = data.pendingChanges;
+    this.isRunning = data.isRunning;
   }
   
   async startBot(): Promise<void> {
     try {
       const response = await lastValueFrom(this._api.startTmpVoiceBot(this._user.token));
-      await this.startConsole();
       this._snackbar.open(response.message);
     } catch (error) {
 			this._error.handleApiError(error);
@@ -72,8 +67,6 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
   async restartBot(): Promise<void> {
     try {
       const response = await lastValueFrom(this._api.restartTmpVoiceBot(this._user.token));
-      await this.stopConsole();
-      await this.startConsole();
       this._snackbar.open(response.message);
     } catch (error) {
 			this._error.handleApiError(error);
@@ -83,7 +76,6 @@ export class TmpVoiceBotComponent implements OnInit, AfterViewInit, OnDestroy {
   async stopBot(): Promise<void> {
     try {
       const response = await lastValueFrom(this._api.stopTmpVoiceBot(this._user.token));
-      await this.stopConsole();
       this._snackbar.open(response.message);
     } catch (error) {
 			this._error.handleApiError(error);

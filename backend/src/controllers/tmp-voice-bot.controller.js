@@ -28,7 +28,12 @@ async function startBot() {
 
 async function getConsole(req, res, next) {
     try {
-        res.json(consoleOutput);
+        const database = await databaseService.getDataBase();
+        res.json({
+            consoleOutput: consoleOutput,
+            pendingChanges: database.tmpVoiceBot.pendingChanges,
+            isRunning: database.tmpVoiceBot.isRunning
+        });
     } catch(err) {
         next(err);
     }

@@ -11,24 +11,33 @@
         <mat-card-content>
             <div class="col">
                 <div class="actions py-2 d-flex flex-wrap justify-content-evenly">
-                    <button mat-raised-button class="start my-1" (click)="startBot()">
+                    <button mat-raised-button class="start my-1" (click)="startBot()" [disabled]="isRunning">
                         <mat-icon> power_settings_new </mat-icon>
                         START
                     </button>
-                    <button mat-raised-button class="restart my-1" (click)="restartBot()">
+                    <button mat-raised-button class="restart my-1" (click)="restartBot()" [disabled]="!isRunning">
                         <mat-icon> replay </mat-icon>
                         RESTART
                     </button>
-                    <button mat-raised-button class="stop my-1" (click)="stopBot()">
+                    <button mat-raised-button class="stop my-1" (click)="stopBot()" [disabled]="!isRunning">
                         <mat-icon> block </mat-icon>
                         STOP
                     </button>
                 </div>
             </div>
+            <div class="pending-changes" *ngIf="pendingChanges">
+                <mat-icon>warning</mat-icon>
+                <span> Restart Required </span>
+            </div>
             <div class="console-container mt-3">
                 <div class="console p-3" #console>
-                    <p *ngFor="let row of consoleOutput" class="mb-1">
-                        {{ row }}
+                    <ng-container *ngIf="isRunning">
+                        <p *ngFor="let row of consoleOutput" class="mb-1">
+                            {{ row }}
+                        </p>
+                    </ng-container>
+                    <p *ngIf="!isRunning">
+                        Bot offline
                     </p>
                 </div>
             </div>
