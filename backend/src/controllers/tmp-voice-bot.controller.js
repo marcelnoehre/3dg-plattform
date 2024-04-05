@@ -27,12 +27,7 @@ async function startBot() {
 
 async function getConsole(req, res, next) {
     try {
-        const database = await databaseService.getDataBase();
-        if (database.tmpVoiceBot.isRunning) {
-            res.json(consoleOutput);
-        } else {
-            res.status(400).send({ message: 'Bot is not running!' });
-        }
+        res.json(consoleOutput);
     } catch(err) {
         next(err);
     }
