@@ -100,4 +100,13 @@ export class ApiService {
 		};
 		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_PATH_TMP_VOICE_BOT, body);
 	}
+
+	public updateChannelSettingsTmpVoiceBot(token: string, attribute: string, value: string) {
+		const body = {
+			token: token,
+			attribute: attribute,
+			value: value
+		};
+		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_CHANNEL_SETTINGS_TMP_VOICE_BOT, body);
+	}
 }

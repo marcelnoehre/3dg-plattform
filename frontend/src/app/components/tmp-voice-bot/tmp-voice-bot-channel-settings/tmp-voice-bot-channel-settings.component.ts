@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class TmpVoiceBotChannelSettingsComponent implements OnInit {
 		private _dialogRef: MatDialogRef<TmpVoiceBotChannelSettingsComponent>,
     private _api: ApiService,
     private _user: UserService,
-    private _error: ErrorService
+    private _error: ErrorService,
+    private _snackbar: SnackbarService
 
 	) { }
 
@@ -46,6 +48,20 @@ export class TmpVoiceBotChannelSettingsComponent implements OnInit {
 
   disableChannel(): boolean {
     return this.channel === this.initChannel;
+  }
+
+  async update(attribute: string): Promise<void> {
+    try {
+      const response = await lastValueFrom(this._api.updateChannelSettingsTmpVoiceBot(this._user.token, attribute, attribute === 'teamParent' ? this.category : this.channel));
+      if (attribute === 'teamParent') {
+        this.initCategory = this.category;
+      } else {
+        this.initChannel = this.channel;
+      }
+      this._snackbar.open(response.message);
+    } catch (error) {
+      this._error.handleApiError(error);
+    }
   }
 
 }

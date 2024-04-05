@@ -113,9 +113,10 @@ async function updateChannelSettings(req, res, next) {
         const attribute = req.body.attribute;
         const value = req.body.value;
         const database = await databaseService.getDataBase();
-        const data = await commonService.readJSONFile(database.tmpVoiceBot.path.replace('index.js', 'assets/channel.json'));
+        const path = database.tmpVoiceBot.path.replace('index.js', 'assets/channel.json');
+        const data = await commonService.readJSONFile(path);
         data[attribute] = value;
-        await commonService.updateJSONFile(data);
+        await commonService.updateJSONFile(path, data);
         if (database.tmpVoiceBot.isRunning) {
             database.tmpVoiceBot.pendingChanges = true;
         }

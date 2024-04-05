@@ -12,7 +12,7 @@ async function readJSONFile(path) {
 }
 
 async function updateJSONFile(path, json) {
-    fs.writeFile(path, JSON.stringify(database, null, 2), 'utf8', (err) => {
+    fs.writeFile(path, JSON.stringify(json, null, 2), 'utf8', (err) => {
         if (err) {
             throw new Error('Error saving file: ' + err);
         }
