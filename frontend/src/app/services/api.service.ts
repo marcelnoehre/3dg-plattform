@@ -10,13 +10,13 @@ import { ApiResponse } from '../interfaces/api-response.interface';
   providedIn: 'root'
 })
 export class ApiService {
-  private _basePath = 'http://localhost:3000/';
+	private _basePath = 'http://localhost:3000/';
 
-  constructor(
-    private request: RequestService
-  ) { }
+	constructor(
+		private request: RequestService
+	) { }
 
-  // ### AUTH ###
+	// ### AUTH ###
 	public verify(token: string): Observable<User> {
 		const query = {
 			token: token
@@ -55,5 +55,88 @@ export class ApiService {
 			password: password
 		};
 		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_PASSWORD, body);
+	}
+
+	// ### TMP VOICE BOT ###
+	public getConsoleOutputTmpVoiceBot(token: string): Observable<any> {
+		const body = {
+			token: token
+		};
+		return this.request.send<any>(RequestType.GET, this._basePath + RequestPath.GET_CONSOLE_TMP_VOICE_BOT, body);
+	}
+
+	public getFileTmpVoiceBot(token: string): Observable<string> {
+		const body = {
+			token: token
+		};
+		return this.request.send<string>(RequestType.GET, this._basePath + RequestPath.GET_FILE_TMP_VOICE_BOT, body);
+	}
+
+	public getTeamsTmpVoiceBot(token: string): Observable<any> {
+		const body = {
+			token: token
+		};
+		return this.request.send<any>(RequestType.GET, this._basePath + RequestPath.GET_TEAMS_TMP_VOICE_BOT, body);
+	}
+
+	public getChannelSettingsTmpVoiceBot(token: string): Observable<any> {
+		const body = {
+			token: token
+		};
+		return this.request.send<any>(RequestType.GET, this._basePath + RequestPath.GET_CHANNEL_SETTINGS_TMP_VOICE_BOT, body);
+	}
+
+	public startTmpVoiceBot(token: string): Observable<ApiResponse> {
+		const body = {
+			token: token
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.START_TMP_VOICE_BOT, body);
+	}
+
+	public restartTmpVoiceBot(token: string): Observable<ApiResponse> {
+		const body = {
+			token: token
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.RESTART_TMP_VOICE_BOT, body);
+	}
+
+	public stopTmpVoiceBot(token: string): Observable<ApiResponse> {
+		const body = {
+			token: token
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.STOP_TMP_VOICE_BOT, body);
+	}
+
+	public addTeamTmpVoiceBot(token: string, team: any) {
+		const body = {
+			token: token,
+			team: team
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.ADD_TEAM_TMP_VOICE_BOT, body);
+	}
+
+	public deleteTeamTmpVoiceBot(token: string, id: string) {
+		const body = {
+			token: token,
+			id: id
+		};
+		return this.request.send<ApiResponse>(RequestType.POST, this._basePath + RequestPath.DELETE_TEAM_TMP_VOICE_BOT, body);
+	}
+
+	public updatePathTmpVoiceBot(token: string, path: string) {
+		const body = {
+			token: token,
+			path: path
+		};
+		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_PATH_TMP_VOICE_BOT, body);
+	}
+
+	public updateChannelSettingsTmpVoiceBot(token: string, attribute: string, value: string) {
+		const body = {
+			token: token,
+			attribute: attribute,
+			value: value
+		};
+		return this.request.send<ApiResponse>(RequestType.PUT, this._basePath + RequestPath.UPDATE_CHANNEL_SETTINGS_TMP_VOICE_BOT, body);
 	}
 }

@@ -12,6 +12,9 @@ app.use(bodyParser.json());
 const authRouter = require('./src/routes/auth');
 app.use('/auth', authRouter);
 
+const tmpVoiceBotRouter = require('./src/routes/tmp-voice-bot');
+app.use('/tmpVoiceBot', tmpVoiceBotRouter);
+
 app.get('/', (req, res) => {
   res.send(`Server is running at http://localhost:${port}`);
 });

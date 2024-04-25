@@ -1,0 +1,18 @@
+{
+    "secret": "jwt_scret_key",
+    "defaultPassword": "default_hash",
+    "users": {
+        "username": {
+            "username": "username",
+            "permission": "permission"
+        }
+    },
+    "passwords": {
+        "username": "password_hash"
+    },
+    "tmpVoiceBot": {
+        "path": "",
+        "pendingChanges": false,
+        "isRunning": false
+    }
+}

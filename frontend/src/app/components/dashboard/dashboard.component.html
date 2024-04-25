@@ -1,14 +1,16 @@
 <div class="dashboard-container">
     <div class="row" *ngFor="let row of appItems">
-      <div class="item m-2" *ngFor="let item of row">
-        <mat-icon 
-          style="--item-bg: {{ item.color }}" 
-          [routerLink]="item.route" 
-          tabindex="0" 
-          (keyup.enter)="redirectTo(item.route)"
-          [attr.data-cy]="'dashboard-app-'+ item.item"
-        >{{ item.icon }}</mat-icon>
-        <div class="label">{{ item.item }}</div>
-      </div>
+      <ng-container *ngFor="let item of row">
+        <div class="item m-2" *ngIf="hasPermission(item.permission)">
+          <mat-icon 
+            style="--item-bg: {{ item.color }}" 
+            [routerLink]="item.route" 
+            tabindex="0" 
+            (keyup.enter)="redirectTo(item.route)"
+            [attr.data-cy]="'dashboard-app-'+ item.item"
+          >{{ item.icon }}</mat-icon>
+          <div class="label">{{ item.item }}</div>
+        </div>
+      </ng-container>
     </div>
   </div>

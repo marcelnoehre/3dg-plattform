@@ -54,7 +54,7 @@ export class CreateUserComponent {
 	}
 
   public disableSubmit(): boolean {
-    return !this.createUserForm.valid;
+    return !this.createUserForm.valid || !this._user.hasPermission(Permission.HEAD_ADMIN);
   }
 
   public async createUser(): Promise<void> {

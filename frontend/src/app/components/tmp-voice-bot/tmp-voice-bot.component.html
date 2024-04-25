@@ -1,0 +1,56 @@
+<div class="tmp-voice-bot-container p-5">
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <h1 class="header pb-4">
+              Team Voice Bot
+            </h1>
+            <button mat-icon-button class="settings-icon" *ngIf="canShowSettings()" (click)="showSettings()">
+                <mat-icon>settings</mat-icon>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="col">
+                <div class="actions py-2 d-flex flex-wrap justify-content-evenly">
+                    <button mat-raised-button class="start my-1" (click)="startBot()" [disabled]="isRunning">
+                        <mat-icon> power_settings_new </mat-icon>
+                        START
+                    </button>
+                    <button mat-raised-button class="restart my-1" (click)="restartBot()" [disabled]="!isRunning">
+                        <mat-icon> replay </mat-icon>
+                        RESTART
+                    </button>
+                    <button mat-raised-button class="stop my-1" (click)="stopBot()" [disabled]="!isRunning">
+                        <mat-icon> block </mat-icon>
+                        STOP
+                    </button>
+                </div>
+            </div>
+            <div class="pending-changes" *ngIf="pendingChanges">
+                <mat-icon>warning</mat-icon>
+                <span> Restart Required </span>
+            </div>
+            <div class="console-container mt-3">
+                <div class="console p-3" #console>
+                    <ng-container *ngIf="isRunning">
+                        <p *ngFor="let row of consoleOutput" class="mb-1">
+                            {{ row }}
+                        </p>
+                    </ng-container>
+                    <p *ngIf="!isRunning">
+                        Bot offline
+                    </p>
+                </div>
+            </div>
+            <div class="edit d-flex flex-wrap justify-content-start gap-3 mt-3">
+                <button mat-stroked-button color="primary" class="my-1" (click)="showTeamsSettings()">
+                    <mat-icon> edit </mat-icon>
+                    TEAMS
+                </button>
+                <button mat-stroked-button color="primary" class="my-1" (click)="showChannelSettings()">
+                    <mat-icon> edit </mat-icon>
+                    CHANNELS 
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

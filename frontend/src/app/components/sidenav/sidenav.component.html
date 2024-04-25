@@ -12,7 +12,7 @@
     <mat-nav-list>
       <div>
         <div *ngFor="let item of appItems; index as i">
-          <mat-list-item (click)="toggleSidebar(false)" class="p-1" [ngClass]="isActive(item.route)" [routerLink]="item.route" tabindex="0" (keyup.enter)="redirectTo(item.route)">
+          <mat-list-item (click)="toggleSidebar(false)" class="p-1" [ngClass]="isActive(item.route)" [routerLink]="item.route" tabindex="0" (keyup.enter)="redirectTo(item.route)" *ngIf="hasPermission(item.permission)">
             <div class="sidenav-center">
               <mat-icon class="mat-nav-list-icon m-0">{{ item.icon }}</mat-icon>
               <span *ngIf="isExpanded" class="hidden-text">{{ item.item }}</span>
@@ -23,7 +23,7 @@
       </div>
       <div>
         <div *ngFor="let item of settingsItems; index as i">
-          <mat-list-item (click)="toggleSidebar(false)" class="p-1" [ngClass]="isActive(item.route)" [routerLink]="item.route" tabindex="0" (keyup.enter)="redirectTo(item.route)">
+          <mat-list-item (click)="toggleSidebar(false)" class="p-1" [ngClass]="isActive(item.route)" [routerLink]="item.route" tabindex="0" (keyup.enter)="redirectTo(item.route)" *ngIf="hasPermission(item.permission)">
             <div class="sidenav-center">
               <mat-icon class="mat-nav-list-icon m-0">{{ item.icon }}</mat-icon>
               <span *ngIf="isExpanded" class="hidden-text">{{ item.item }}</span>
