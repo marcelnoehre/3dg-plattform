@@ -4,6 +4,7 @@
   "description": "Backend of the 3dg-plattform",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "generate-swagger": "node swagger.js"
   },
   "author": "",
